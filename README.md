@@ -260,7 +260,7 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 |HunyuanVideo 1.5-480P-T2V|[480P-T2V](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/480p_t2v) |
 |HunyuanVideo 1.5-480P-I2V |[480P-I2V](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/480p_i2v) |
 |HunyuanVideo 1.5-480P-T2V-distill | [480P-T2V-distill](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/480p_t2v_distilled) |
-|HunyuanVideo 1.5-480p-I2V-distill |[480P-I2V-distill](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/480p_i2v_distilled) |
+|HunyuanVideo 1.5-480P-I2V-distill |[480P-I2V-distill](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/480p_i2v_distilled) |
 |HunyuanVideo 1.5-720P-T2V|[720P-T2V](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/720p_t2v) |
 |HunyuanVideo 1.5-720P-I2V |[720P-I2V](https://huggingface.co/tencent/HunyuanVideo-1.5/tree/main/transformer/720p_i2v) |
 |HunyuanVideo 1.5-720P-T2V-distiill| Comming soon |
