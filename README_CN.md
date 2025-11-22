@@ -79,6 +79,7 @@ HunyuanVideo-1.5作为一款轻量级视频生成模型，仅需83亿参数即�
 - [🔑 使用方法](#-使用方法)
   - [视频生成](#视频生成)
   - [命令行参数](#命令行参数)
+  - [最优推理配置](#最优推理配置)
 - [🧱 模型卡片](#-模型卡片)
 - [🎬 更多示例](#-更多示例)
 - [📊 性能评估](#-性能评估)
@@ -263,6 +264,25 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 | `--enable_torch_compile` | bool | 否 | `false` | 启用 torch compile 以优化 transformer（使用 `--enable_torch_compile` 或 `--enable_torch_compile true/1` 来启用，`--enable_torch_compile false/0` 来禁用） |
 
 **注意：** 使用 `--nproc_per_node` 指定使用的 GPU 数量。例如，`--nproc_per_node=8` 表示使用 8 个 GPU。
+
+### 最优推理配置
+
+下表提供了每个模型的最优推理配置（CFG 缩放、嵌入 CFG 缩放、流偏移和推理步数），以获得最佳生成质量：
+
+| 模型 | CFG 缩放 | 嵌入 CFG 缩放 | 流偏移 | 推理步数 |
+|-------|-----------|-------------------|------------|-----------------|
+| 480p T2V | 6 | None | 5 | 50 |
+| 480p I2V | 6 | None | 5 | 50 |
+| 720p T2V | 6 | None | 9 | 50 |
+| 720p I2V | 6 | None | 7 | 50 |
+| 480p T2V 蒸馏 | 1 | None | 5 | 50 |
+| 480p I2V 蒸馏 | 1 | None | 5 | 50 |
+| 720p T2V 蒸馏 | 1 | None | 9 | 50 |
+| 720p I2V 蒸馏 | 1 | None | 7 | 50 |
+| 720p T2V 蒸馏稀疏 | 1 | None | 7 | 50 |
+| 720p I2V 蒸馏稀疏 | 1 | None | 9 | 50 |
+| 480→720 超分辨率 | - | None | 2 | 6 |
+| 720→1080 超分辨率 | 1 | - | 2 | 8 |
 
 
 ## 🧱 模型卡片

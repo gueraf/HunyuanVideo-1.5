@@ -81,6 +81,7 @@ If you develop/use HunyuanVideo-1.5 in your projects, welcome to let us know.
   - [Text to Video](#text-to-video)
   - [Image to Video](#image-to-video)
   - [Command Line Arguments](#command-line-arguments)
+  - [Optimal Inference Configurations](#optimal-inference-configurations)
 - [🧱 Models Cards](#-models-cards)
 - [🎬 More Examples](#-more-examples)
 - [📊 Evaluation](#-evaluation)
@@ -259,6 +260,25 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 | `--enable_torch_compile` | bool | No | `false` | Enable torch compile for transformer (use `--enable_torch_compile` or `--enable_torch_compile true/1` to enable, `--enable_torch_compile false/0` to disable) |
 
 **Note:** Use `--nproc_per_node` to specify the number of GPUs. For example, `--nproc_per_node=8` uses 8 GPUs.
+
+### Optimal Inference Configurations
+
+The following table provides the optimal inference configurations (CFG scale, embedded CFG scale, flow shift, and inference steps) for each model to achieve the best generation quality:
+
+| Model | CFG Scale | Embedded CFG Scale | Flow Shift | Inference Steps |
+|-------|-----------|-------------------|------------|-----------------|
+| 480p T2V | 6 | None | 5 | 50 |
+| 480p I2V | 6 | None | 5 | 50 |
+| 720p T2V | 6 | None | 9 | 50 |
+| 720p I2V | 6 | None | 7 | 50 |
+| 480p T2V Distilled | 1 | None | 5 | 50 |
+| 480p I2V Distilled | 1 | None | 5 | 50 |
+| 720p T2V Distilled | 1 | None | 9 | 50 |
+| 720p I2V Distilled | 1 | None | 7 | 50 |
+| 720p T2V Distilled Sparse | 1 | None | 7 | 50 |
+| 720p I2V Distilled Sparse | 1 | None | 9 | 50 |
+| 480→720 SR | - | None | 2 | 6 |
+| 720→1080 SR | 1 | - | 2 | 8 |
 
 
 ## 🧱 Models Cards
