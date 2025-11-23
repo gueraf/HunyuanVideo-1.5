@@ -47,12 +47,7 @@ Find workflow templates at:
 
 ### Recommended Inference Configurations
 
-<div style="color: red;">
-Important!
-</div>
-
-
-The following table provides the optimal inference configurations (CFG scale, embedded CFG scale, flow shift, and inference steps) for each model to achieve the best generation quality:
+**Important!** The following table is for the best generation quality. If you want to generate faster, you can use the following configurations:
 
 
 | Model | CFG Scale | Embedded CFG Scale | Flow Shift | Inference Steps |
