@@ -52,20 +52,20 @@ Find workflow templates at:
 | 480p I2V | 6 | None | 5 | 50 |
 | 720p T2V | 6 | None | 9 | 50 |
 | 720p I2V | 6 | None | 7 | 50 |
-| 480p T2V Distilled | 1 | None | 5 | 50 |
-| 480p I2V Distilled | 1 | None | 5 | 50 |
-| 720p T2V Distilled | 1 | None | 9 | 50 |
-| 720p I2V Distilled | 1 | None | 7 | 50 |
-| 720p T2V Distilled Sparse | 1 | None | 7 | 50 |
-| 720p I2V Distilled Sparse | 1 | None | 9 | 50 |
-| 480→720 SR | 1 | None | 2 | 6 |
-| 720→1080 SR | 1 | None | 2 | 8 |
+| 480p T2V CFG Distilled | 1 | None | 5 | 50 |
+| 480p I2V CFG Distilled | 1 | None | 5 | 50 |
+| 720p T2V CFG Distilled | 1 | None | 9 | 50 |
+| 720p I2V CFG Distilled | 1 | None | 7 | 50 |
+| 720p T2V CFG Distilled Sparse | 1 | None | 9 | 50 |
+| 720p I2V CFG Distilled Sparse | 1 | None | 7 | 50 |
+| 480→720 SR Step Distilled | 1 | None | 2 | 6 |
+| 720→1080 SR Step Distilled | 1 | None | 2 | 8 |
 
 
 ### Prompt Writing Tips
 
 - Use detailed, descriptive prompts for better results
-- Refer to the [HunyuanVideo-1.5 Prompt Handbook](https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNACVygLxeQjyn4FYS?scode=AJEAIQdfAAoSfXnTj0AAkA-gaeACk) for guidance
+- Refer to the [HunyuanVideo-1.5 Prompt Handbook](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md) for guidance
 - Include details about camera movement, style, lighting, etc.
 
 ## 🔗 Links
@@ -74,7 +74,7 @@ Find workflow templates at:
 - **HunyuanVideo-1.5 Repository**: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
 - **Model Checkpoint**: https://huggingface.co/Comfy-Org/HunyuanVideo_1.5_repackaged
 - **Workflow Templates**: https://github.com/Comfy-Org/workflow_templates/tree/main/templates
-- **Prompt Handbook**: https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNACVygLxeQjyn4FYS?scode=AJEAIQdfAAoSfXnTj0AAkA-gaeACk
+- **Prompt Handbook**: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md
 
 ---
 

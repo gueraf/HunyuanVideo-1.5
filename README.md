@@ -26,7 +26,7 @@ HunyuanVideo-1.5 is a video generation model that delivers top-tier quality with
   <a href=https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5 target="_blank"><img src= https://img.shields.io/badge/Page-bb8a2e.svg?logo=github height=22px></a>
   <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/report/HunyuanVideo_1_5.pdf" target="_blank"><img src=https://img.shields.io/badge/Report-b5212f.svg?logo=arxiv height=22px></a>
   <a href=https://x.com/TencentHunyuan target="_blank"><img src=https://img.shields.io/badge/Hunyuan-black.svg?logo=x height=22px></a>
-  <a href="https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNACVygLxeQjyn4FYS?scode=AJEAIQdfAAoSfXnTj0AAkA-gaeACk" target="_blank"><img src=https://img.shields.io/badge/📚-PromptHandBook-blue.svg?logo=book height=22px></a> <br/>
+  <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md" target="_blank"><img src=https://img.shields.io/badge/📚-PromptHandBook-blue.svg?logo=book height=22px></a> <br/>
   <a href="./ComfyUI/README.md" target="_blank"><img src=https://img.shields.io/badge/ComfyUI-blue.svg?logo=book height=22px></a>
   <a href="https://github.com/ModelTC/LightX2V" target="_blank"><img src=https://img.shields.io/badge/LightX2V-yellow.svg?logo=book height=22px></a>
 
@@ -175,7 +175,7 @@ Download the pretrained models before generating videos. Detailed instructions a
 ### Prompt Writing Handbook
 Prompt enhancement plays a crucial role in enabling our model to generate high-quality videos. By writing longer and more detailed prompts, the generated video will be significantly improved. We encourage you to craft comprehensive and descriptive prompts to achieve the best possible video quality. we recommend community partners consulting our official guide on how to write effective prompts. 
 
-**Reference:** **[HunyuanVideo-1.5 Prompt Handbook](https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNACVygLxeQjyn4FYS?scode=AJEAIQdfAAoSfXnTj0AAkA-gaeACk)**
+**Reference:** **[HunyuanVideo-1.5 Prompt Handbook](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md)**
 
 ### System Prompts for Automatic Prompt Enhancement
 For users seeking to optimize prompts for other large models, it is recommended to consult the definition of `t2v_rewrite_system_prompt` in the file `hyvideo/utils/rewrite/t2v_prompt.py` to guide text-to-video rewriting. Similarly, for image-to-video rewriting, refer to the definition of `i2v_rewrite_system_prompt` in `hyvideo/utils/rewrite/i2v_prompt.py`.
@@ -213,7 +213,7 @@ OUTPUT_PATH=./outputs/output.mp4
 N_INFERENCE_GPU=8 # Parallel inference GPU count
 CFG_DISTILLED=true # Inference with CFG distilled model, 2x speedup
 SPARSE_ATTN=false # Inference with sparse attention (only 720p models are equipped with sparse attention). Please ensure flex-block-attn is installed
-SAGE_ATTN=false # Inference with SageAttention
+SAGE_ATTN=true # Inference with SageAttention
 REWRITE=true # Enable prompt rewriting. Please ensure rewrite vLLM server is deployed and configured.
 OVERLAP_GROUP_OFFLOADING=true # Only valid when group offloading is enabled, significantly increases CPU memory usage but speeds up inference
 MODEL_PATH=ckpts # Path to pretrained model
@@ -238,7 +238,11 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 > ```bash
 > export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 > ```
-
+> 
+> **Tips:** If you have limited CPU memory and encounter OOM during inference, you can try disable overlapped group offloading by adding the following argument:
+> ```bash
+> --overlap_group_offloading false
+> ```
 
 
 ### Command Line Arguments
@@ -284,8 +288,8 @@ The following table provides the optimal inference configurations (CFG scale, em
 | 480p I2V CFG Distilled | 1 | None | 5 | 50 |
 | 720p T2V CFG Distilled | 1 | None | 9 | 50 |
 | 720p I2V CFG Distilled | 1 | None | 7 | 50 |
-| 720p T2V CFG Distilled Sparse | 1 | None | 7 | 50 |
-| 720p I2V CFG Distilled Sparse | 1 | None | 9 | 50 |
+| 720p T2V CFG Distilled Sparse | 1 | None | 9 | 50 |
+| 720p I2V CFG Distilled Sparse | 1 | None | 7 | 50 |
 | 480→720 SR Step Distilled | 1 | None | 2 | 6 |
 | 720→1080 SR Step Distilled | 1 | None | 2 | 8 |
 

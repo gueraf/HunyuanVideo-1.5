@@ -26,7 +26,7 @@ HunyuanVideo-1.5作为一款轻量级视频生成模型，仅需83亿参数即�
   <a href=https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5 target="_blank"><img src= https://img.shields.io/badge/Page-bb8a2e.svg?logo=github height=22px></a>
   <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/report/HunyuanVideo_1_5.pdf" target="_blank"><img src=https://img.shields.io/badge/Report-b5212f.svg?logo=arxiv height=22px></a>
   <a href=https://x.com/TencentHunyuan target="_blank"><img src=https://img.shields.io/badge/Hunyuan-black.svg?logo=x height=22px></a>
-  <a href="https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNACVygLxeQjyn4FYS?scode=AJEAIQdfAAoSfXnTj0AAkA-gaeACk" target="_blank"><img src=https://img.shields.io/badge/📚-PromptHandBook-blue.svg?logo=book height=22px></a> <br/>
+  <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md" target="_blank"><img src=https://img.shields.io/badge/📚-PromptHandBook-blue.svg?logo=book height=22px></a> <br/>
   <a href="./ComfyUI/README.md" target="_blank"><img src=https://img.shields.io/badge/ComfyUI-blue.svg?logo=book height=22px></a>
   <a href="https://github.com/ModelTC/LightX2V" target="_blank"><img src=https://img.shields.io/badge/LightX2V-yellow.svg?logo=book height=22px></a>
 
@@ -175,7 +175,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 提示词增强在我们的模型生成高质量视频方面起着至关重要的作用。通过撰写更长、更详细的提示词，生成的视频质量将得到显著改善。我们鼓励您编写全面且描述性的提示词，以获得最佳的视频质量。我们建议社区伙伴参考我们的官方指南，了解如何撰写有效的提示词。
 
 
-**参考：** **[HunyuanVideo-1.5 提示词手册](https://doc.weixin.qq.com/doc/w3_AXcAcwZSAGgCNhei2zzNUS8O4mKop?scode=AJEAIQdfAAoE1dhviFAAkA-gaeACk)**
+**参考：** **[HunyuanVideo-1.5 提示词手册](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/main/assets/HunyuanVideo_1_5_Prompt_Handbook_EN.md)**
 
 
 ### 自动提示词增强的系统提示词
@@ -216,7 +216,7 @@ OUTPUT_PATH=./outputs/output.mp4
 N_INFERENCE_GPU=8 # 并行推理 GPU 数量
 CFG_DISTILLED=true # 使用 CFG 蒸馏模型进行推理，2倍加速
 SPARSE_ATTN=false # 使用稀疏注意力进行推理（仅 720p 模型配备了稀疏注意力）。请确保 flex-block-attn 已安装
-SAGE_ATTN=false # 使用 SageAttention 进行推理
+SAGE_ATTN=true # 使用 SageAttention 进行推理
 REWRITE=true # 启用提示词重写。请确保 rewrite vLLM server 已部署和配置。
 OVERLAP_GROUP_OFFLOADING=true # 仅在组卸载启用时有效，会显著增加 CPU 内存占用，但能够提速
 MODEL_PATH=ckpts # 预训练模型路径
@@ -240,6 +240,11 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 > **Tips:** 如果您的 GPU 内存 > 14GB 但您在生成过程中遇到 OOM (Out of Memory) 错误，可以尝试在运行前设置以下环境变量：
 > ```bash
 > export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
+> ```
+> 
+> **Tips:** 如果您有 CPU 内存有限并且遇到推理时的 OOM 错误，可以尝试禁用重叠组卸载，通过添加以下参数：
+> ```bash
+> --overlap_group_offloading false
 > ```
 
 ### 命令行参数
@@ -285,8 +290,8 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 | 480p I2V cfg 蒸馏 | 1 | None | 5 | 50 |
 | 720p T2V cfg 蒸馏 | 1 | None | 9 | 50 |
 | 720p I2V cfg 蒸馏 | 1 | None | 7 | 50 |
-| 720p T2V cfg 蒸馏稀疏 | 1 | None | 7 | 50 |
-| 720p I2V cfg 蒸馏稀疏 | 1 | None | 9 | 50 |
+| 720p T2V cfg 蒸馏稀疏 | 1 | None | 9 | 50 |
+| 720p I2V cfg 蒸馏稀疏 | 1 | None | 7 | 50 |
 | 480→720 超分 步数蒸馏 | 1 | None | 2 | 6 |
 | 720→1080 超分 步数蒸馏 | 1 | None | 2 | 8 |
 

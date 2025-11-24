@@ -72,14 +72,7 @@ def generate_video(args):
     
     enable_sr = args.sr
     
-    # Build transformer_version based on flags
-    # Note: sparse attention requires distilled model, so if sparse_attn is enabled,
-    # we automatically include distilled in the version string
-    transformer_version = f'{args.resolution}_{task}'
-    if args.cfg_distilled or args.sparse_attn:
-        transformer_version += '_distilled'
-    if args.sparse_attn:
-        transformer_version += '_sparse'
+    transformer_version = HunyuanVideo_1_5_Pipeline.get_transformer_version(args.resolution, task, args.cfg_distilled, False, args.sparse_attn)
     
     if args.dtype == 'bf16':
         transformer_dtype = torch.bfloat16
@@ -220,7 +213,7 @@ def main():
              '--group_offloading false/0 to disable'
     )
     parser.add_argument(
-        '--overlap_group_offloading', type=str_to_bool, nargs='?', const=True, default=True,
+        '--overlap_group_offloading', type=str_to_bool, nargs='?', const=True, default=None,
         help='Enable overlap group offloading (default: true). '
              'Significantly increases CPU memory usage but speeds up inference. '
              'Use --overlap_group_offloading or --overlap_group_offloading true/1 to enable, '
