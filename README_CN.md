@@ -241,6 +241,11 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 > ```bash
 > export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 > ```
+> 
+> **Tips:** 如果您有 CPU 内存有限并且遇到推理时的 OOM 错误，可以尝试禁用重叠组卸载，通过添加以下参数：
+> ```bash
+> --overlap_group_offloading false
+> ```
 
 ### 命令行参数
 

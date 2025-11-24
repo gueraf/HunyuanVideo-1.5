@@ -238,7 +238,11 @@ torchrun --nproc_per_node=$N_INFERENCE_GPU generate.py \
 > ```bash
 > export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 > ```
-
+> 
+> **Tips:** If you have limited CPU memory and encounter OOM during inference, you can try disable overlapped group offloading by adding the following argument:
+> ```bash
+> --overlap_group_offloading false
+> ```
 
 
 ### Command Line Arguments

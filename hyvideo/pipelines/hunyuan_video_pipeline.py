@@ -15,6 +15,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 
+import psutil
 import inspect
 import os
 import random
@@ -1345,7 +1346,7 @@ class HunyuanVideo_1_5_Pipeline(DiffusionPipeline):
         )
 
     @classmethod
-    def create_pipeline(cls, pretrained_model_name_or_path, transformer_version, create_sr_pipeline=False, force_sparse_attn=False, transformer_dtype=torch.bfloat16, enable_offloading=None, enable_group_offloading=None, overlap_group_offloading=True, device=None, **kwargs):
+    def create_pipeline(cls, pretrained_model_name_or_path, transformer_version, create_sr_pipeline=False, force_sparse_attn=False, transformer_dtype=torch.bfloat16, enable_offloading=None, enable_group_offloading=None, overlap_group_offloading=None, device=None, **kwargs):
         # use snapshot download here to get it working from from_pretrained
 
         if not os.path.isdir(pretrained_model_name_or_path):
@@ -1415,6 +1416,13 @@ class HunyuanVideo_1_5_Pipeline(DiffusionPipeline):
             'onload_device': torch.device('cuda'),
             'num_blocks_per_group': 4,
         }
+
+
+        if overlap_group_offloading is None:
+            available_cpu_mem_gb = psutil.virtual_memory().available / (1024 ** 3)
+            # use_stream requires higher cpu memory
+            overlap_group_offloading = available_cpu_mem_gb > 64
+
         if overlap_group_offloading:
             # Using streams is only supported for num_blocks_per_group=1
             group_offloading_kwargs['num_blocks_per_group'] = 1

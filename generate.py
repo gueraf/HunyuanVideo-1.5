@@ -220,7 +220,7 @@ def main():
              '--group_offloading false/0 to disable'
     )
     parser.add_argument(
-        '--overlap_group_offloading', type=str_to_bool, nargs='?', const=True, default=True,
+        '--overlap_group_offloading', type=str_to_bool, nargs='?', const=True, default=None,
         help='Enable overlap group offloading (default: true). '
              'Significantly increases CPU memory usage but speeds up inference. '
              'Use --overlap_group_offloading or --overlap_group_offloading true/1 to enable, '
